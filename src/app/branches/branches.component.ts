@@ -23,11 +23,11 @@ export class BranchesComponent implements OnInit {
   selectedCity: any = '';
 
   constructor(private branchesService: BranchesService) { }
-  
+
   displayedColumns: string[] = ['StoreID', 'StoreName', 'StoreAddress', 'StorePhone', 'empInNeed', 'empInterview'];
   dataSource: Branche[] = [];
   selectedArea: number = 0;
-  
+
   @ViewChild('matRef') matRef: MatSelect;
 
   clear() {
@@ -58,14 +58,14 @@ export class BranchesComponent implements OnInit {
   }
 
   onAreaChange(event: any): void {
-    this.selectedArea = event.value;
+    this.selectedArea = event?.value;
     this.extractCities(this.selectedArea);
   }
 
   extractCities(area: any): void {
     const tempMap = new Map<string, boolean>();
     this.clear();
-    this.citiesByArea=[];
+    this.citiesByArea = [];
     this.dataSource = [];
     this.selectedCity = '';
     if (area.length) {
@@ -93,7 +93,7 @@ export class BranchesComponent implements OnInit {
     this.dataSource = [];
     this.selectedCity = '';
     let brancheSearch = event.target.value;
-    if (brancheSearch) {
+    if (brancheSearch != '') {
       this.branche.filter(branche => branche.store_id == brancheSearch ||
         branche.store_title?.includes(brancheSearch) ||
         branche.store_address?.includes(brancheSearch) ||
@@ -107,7 +107,7 @@ export class BranchesComponent implements OnInit {
         });
     }
     else {
-      this.dataSource = this.branche
+      this.extractCities(this.selectedArea);
     }
   }
 
