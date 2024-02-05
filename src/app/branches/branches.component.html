@@ -1,0 +1,49 @@
+<div class="select">
+    <mat-form-field>
+        <mat-label>Select Area</mat-label>
+        <mat-select multiple (selectionChange)="onAreaChange($event)">
+            <mat-option *ngFor="let area of cities" [value]="area">{{area.area}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Select City</mat-label>
+        <mat-select #matRef (selectionChange)="onSelectCity($event)">
+            <mat-option [value]="city.city" *ngFor="let city of citiesByArea ">{{city.city}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Free text search</mat-label>
+        <input matInput #first (change)="searchBranche($event)">
+    </mat-form-field>
+</div>
+
+<table mat-table [dataSource]="dataSource">
+    <!-- Table columns -->
+    <ng-container matColumnDef="StoreID">
+        <th mat-header-cell *matHeaderCellDef> Store ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.store_id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="StoreName">
+        <th mat-header-cell *matHeaderCellDef> Store Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.store_title}} </td>
+    </ng-container>
+    <ng-container matColumnDef="StoreAddress">
+        <th mat-header-cell *matHeaderCellDef> Store Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.store_address}} </td>
+    </ng-container>
+    <ng-container matColumnDef="StorePhone">
+        <th mat-header-cell *matHeaderCellDef> Store Phone </th>
+        <td mat-cell *matCellDef="let element"> {{element.store_phone}} </td>
+    </ng-container>
+    <ng-container matColumnDef="empInNeed">
+        <th mat-header-cell *matHeaderCellDef> emp in need</th>
+        <td mat-cell *matCellDef="let element"> {{element.emp_in_need}} </td>
+    </ng-container>
+    <ng-container matColumnDef="empInterview">
+        <th mat-header-cell *matHeaderCellDef> emp interview </th>
+        <td mat-cell *matCellDef="let element"> {{element.emp_interview}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+</table>

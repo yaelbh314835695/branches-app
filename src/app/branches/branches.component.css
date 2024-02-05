@@ -1,0 +1,12 @@
+.select {
+    align-items: stretch;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+table {
+    width: 100%;
+}
